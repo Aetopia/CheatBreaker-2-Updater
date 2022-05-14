@@ -1,6 +1,7 @@
 # CheatBreaker 2 Updater
  Updater/Installer for CheatBreaker 2.
 #### Note: This made to be used with the official Minecraft Launcher!
+#### This is not affiliated with CheatBreaker 2 in anyway!
 
 # Usage
 If using Windows, use the pre-compiled binaries: https://github.com/Aetopia/CheatBreaker-2-Updater/releases                
