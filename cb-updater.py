@@ -25,6 +25,7 @@ for index, entry in enumerate(json):
 
 while True:
     try: entry = json[literal_eval(input('Select > '))-1]; break
+    except SyntaxError: pass    
     except KeyboardInterrupt: exit()
 
 print(f"\nRelease Info > {entry['name']}:\n{entry['body']}".rstrip('\n'))
@@ -35,8 +36,9 @@ if len(entry['assets']) not in (0,1):
     while True:
         try:
             option = literal_eval(input('\nSelect > ').lower().strip())
-            print(entry['assets'][option-1]['browser_download_url'])
+            file = entry['assets'][option-1]['browser_download_url']
             break
+        except SyntaxError: pass
         except KeyboardInterrupt: exit() 
 else: 
     while True:
@@ -62,8 +64,8 @@ if len(folders) != 1:
             folder = folders[literal_eval(option)-1]
             if path.isdir(folder) is False: continue
             with open(f'{glob(f"{folder}/*.json")[0]}') as version_json:
-                version = load(version_json)['id']
-                break
+                version = load(version_json)['id']; break
+        except SyntaxError: pass    
         except KeyboardInterrupt: exit()   
     print()    
 else:
@@ -74,7 +76,7 @@ else:
                 version = load(version_json)['id']
                 break
 print(f"Copying ({version}) to (.minecraft)...")
-copytree(folder, f'{mc_dir}/versions', dirs_exist_ok=True)
+copytree(folder, f'{mc_dir}/versions/{path.split(folder)[1]}', dirs_exist_ok=True)
 
 # Add a Cheatbreaker 1.7.10 Profile if it doesn't exist.
 with open(f'{mc_dir}/launcher_profiles.json') as launcher_profiles:
