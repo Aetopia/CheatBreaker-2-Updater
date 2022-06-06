@@ -11,9 +11,8 @@ from ast import literal_eval
 from sys import exit
 from platform import system
 # Invoke textformat remotely.
-if system() == 'Linux':
-    exec(urlopen('https://raw.githubusercontent.com/Aetopia/CheatBreaker-2-Updater/main/textformat.py').read().decode('UTF-8'))
-else: from textformat import * 
+try: from textformat import *
+except ModuleNotFoundError: exec(urlopen('https://raw.githubusercontent.com/Aetopia/CheatBreaker-2-Updater/main/textformat.py').read().decode('UTF-8'))
 
 try:
     url = 'https://api.github.com/repos/TellinqBreaker/CheatBreaker/releases'
